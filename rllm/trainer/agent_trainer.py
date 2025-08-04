@@ -42,12 +42,17 @@ class AgentTrainer:
         self.env_args = env_args or {}
 
         self.config = config
-
+        print(f'Loading dataset...')
+        print(f'Train dataset: {train_dataset}')
+        print(f'Val dataset: {val_dataset}')
         if train_dataset is not None and self.config is not None and hasattr(self.config, "data"):
+            print(f'Loading train dataset...')
             self.config.data.train_files = train_dataset.get_verl_data_path()
+            print(f'Train dataset loaded {self.config.data.train_files}')
         if val_dataset is not None and self.config is not None and hasattr(self.config, "data"):
+            print(f'Loading val dataset...')
             self.config.data.val_files = val_dataset.get_verl_data_path()
-
+            print(f'Val dataset loaded {self.config.data.val_files}')
     def train(self):
         if not ray.is_initialized():
             ray.init(runtime_env={"env_vars": {"TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN"}})

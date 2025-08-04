@@ -21,8 +21,8 @@ def prepare_deepcoder_data(train_size: int = None, test_size: int = None):
             if test.get("testtype") == "functional" and metadata.get("func_name") is not None:
                 test["metadata"] = {"func_name": metadata["func_name"]}
             else:
-                test["metadata"] = {"func_name": None}
-
+                test["metadata"] = {"func_name": ""}
+        print(f'idx: deepcoder_{idx} | "data_source": "livecodebench"')
         return {"question": question, "ground_truth": tests, "data_source": "livecodebench", "uid": f"deepcoder_{idx}", "index": idx, "starter_code": starter_code, "metadata": metadata}
 
     if train_size:

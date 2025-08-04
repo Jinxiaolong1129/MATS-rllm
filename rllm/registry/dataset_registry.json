@@ -1,0 +1,6 @@
+{
+  "deepcoder": {
+    "train": "/workspace/rllm/rllm/data/datasets/deepcoder/train.parquet",
+    "test": "/workspace/rllm/rllm/data/datasets/deepcoder/test.parquet"
+  }
+}
