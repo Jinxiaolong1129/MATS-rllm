@@ -420,7 +420,7 @@ class RewardCodeFn:
 
         model_response = action
         dataset_name = task_info.get("data_source", "")
-        print(f'✅ Dataset name: {dataset_name}')
+        
         tests = task_info.get("ground_truth", None)
 
         if tests is None:

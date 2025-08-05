@@ -20,10 +20,10 @@ done
 
 # Set default model path if not provided
 if [ -z "$MODEL_PATH" ]; then
-    MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    MODEL_PATH="Qwen/Qwen2.5-3B"
 fi
 
-# Train over 1 nodes, 8 A100-80GB GPUs per node.
+# Train over 4 nodes, 8 A100-80GB GPUs per node.
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/rllm/data/deepscaler_code.parquet \
@@ -64,11 +64,13 @@ python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger=['console','wandb'] \
     trainer.project_name='deepscaler' \
-    trainer.experiment_name='14b-16k-grpo-code-debug' \
+    trainer.experiment_name='Qwen-3b-16k-grpo-code-debug' \
     +trainer.val_before_train=True \
     trainer.n_gpus_per_node=8 \
-    trainer.nnodes=4 \
-    trainer.save_freq=10 \
-    trainer.test_freq=10 \
+    trainer.nnodes=1 \
+    trainer.save_freq=20 \
+    trainer.test_freq=20 \
+    trainer.max_actor_ckpt_to_keep=1 \
+    trainer.max_critic_ckpt_to_keep=1 \
     trainer.default_hdfs_dir=null \
     trainer.total_epochs=100 "${@:1}"
