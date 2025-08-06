@@ -104,7 +104,7 @@ python3 -m examples.deepcoder.train_deepcoder \
     trainer.critic_warmup=0 \
     trainer.logger=['console','wandb'] \
     trainer.project_name='rllm-deepcoder' \
-    trainer.experiment_name="qwen2.5-3b-16k-8gpu-test-job${SLURM_JOB_ID}" \
+    trainer.experiment_name="qwen2.5-3b-16k-8gpu-job${SLURM_JOB_ID}" \
     trainer.val_before_train=True \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=1 \
