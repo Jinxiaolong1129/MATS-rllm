@@ -21,8 +21,7 @@ fi
 RLLM_DIR=$(python3 -c "import rllm; import os; print(os.path.dirname(os.path.dirname(rllm.__file__)))")
 
 # Qwen2.5-3B model - smaller model for 4 GPU setup
-# MODEL_PATH=Qwen/Qwen2.5-3B
-# MODEL_PATH=deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+MODEL_PATH=Qwen/Qwen2.5-3B
 
 mkdir -p examples/deepcoder/logs
 
@@ -74,7 +73,7 @@ python3 -m examples.deepcoder.train_deepcoder \
     trainer.critic_warmup=0 \
     trainer.logger=['console','wandb'] \
     trainer.project_name='rllm-deepcoder' \
-    trainer.experiment_name='deepseek-r1-1.5b-16k-4gpu' \
+    trainer.experiment_name='qwen3b-16k-4gpu' \
     trainer.val_before_train=True \
     trainer.n_gpus_per_node=4 \
     trainer.nnodes=1 \
@@ -84,8 +83,8 @@ python3 -m examples.deepcoder.train_deepcoder \
     trainer.max_critic_ckpt_to_keep=1 \
     trainer.default_hdfs_dir=null \
     trainer.resume_mode=auto \
-    trainer.default_local_dir=checkpoints/rllm-deepcoder/deepseek-r1-1.5b-16k-4gpu \
+    trainer.default_local_dir=checkpoints/rllm-deepcoder/qwen3b-16k-4gpu \
     agent.max_steps=1 \
     agent.use_stepwise_advantage=False \
     trainer.total_epochs=100 \
-    2>&1 | tee examples/deepcoder/logs/deepseek-r1-1.5b-16k-4gpu_$(date +%Y%m%d_%H%M%S).log
+    2>&1 | tee examples/deepcoder/logs/qwen3b-16k-4gpu_$(date +%Y%m%d_%H%M%S).log
