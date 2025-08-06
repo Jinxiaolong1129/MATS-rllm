@@ -17,7 +17,7 @@ FILE_IDS = {
 
 # Get the rllm package path
 RLLM_PATH = os.path.dirname(os.path.dirname(rllm.__file__))
-
+print(f'RLLM_PATH:{RLLM_PATH}')
 # Define the destination paths
 DEST_PATHS = {
     "train_taco.json": os.path.join(RLLM_PATH, "rllm/data/train/code/taco.json"),
